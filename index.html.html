@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>सी.एम.हेल्‍पलाईन निम्‍नगुणवत्‍ता का परीक्षण</title>
+  <style>
+    .red { color: red; }
+    footer {
+      bottom: 0;
+      position: absolute;
+      width: 90%;
+    }
+    #result {
+      white-space: pre-wrap;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-top: 15px;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+ 
+  <h1 class="text-center">सी.एम.हेल्‍पलाईन निम्‍नगुणवत्‍ता का परीक्षण</h1>
+ <h4 class="text-center">वीरेन्द्र शर्मा, महिला एवं बाल विकास विभाग  (म.प्र.), द्वारा तैयार किया गया वेब पेज,निम्न गुणवत्ता की शिकायतों को  कम करने हेतु प्रयोग में लाया जा सकता है।।।</h4>
+
+  <form id="checkForm" onsubmit="return false;">
+    <div class="form-group col-md-8">
+      <label for="content">सी.एम.हेल्‍पलाईन प्रतिवेदन यहां दर्ज करें</label>
+      <textarea rows="10" class="form-control" id="content" name="content" required></textarea>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="keyword">Keyword:</label>
+      <textarea rows="10" class="form-control" id="keyword" name="keyword" readonly>
+बजट, वजट, कर दिया जाएगा, कर दिया जावेगा, करा दी जायेगी, कर दी जावेगी, कर दी जायेगी, कर दी जाएगी, करवाई की जावेगी, कार्यवाही की जावेगी, कार्यवाही की जाएगी, प्रचलित, कार्यवाही जारी, कारवाही जारी है, Karwahi Jari hai, कारवाही चल रही है, कार्यवाही चल रही है, प्रगति पर, प्रचलन, कराया जावेगा, कराया जायेगा, कराया जाएगा, हो जाएगा, कार्य कराया जायेगा, करा दिया जाएगा, निर्देश दिया गया है, निर्देशित कर दिया गया है, निर्देश दिए, निर्देश दिए गये, निर्देशित किया गया,  निर्देश दिये, दिया जायेगा, बदल दिया जायेगा, दी जायेगी, दी जावेगी, किया जाए, किया जाये, किया जावे, संवंधित, संबंधित नही, सम्बन्धित नहीं, संवंधित नहीं, सम्बन्धित नही, सम्बंधित नही, संवंधित नही
+      </textarea>
+    </div>
+
+    <div class="form-group col-md-12 text-center">
+      <button type="button" class="btn btn-primary" onclick="processText()">Check</button>
+    </div>
+  </form>
+
+  <h4></h4>
+  <div id="result"></div>
+
+  <footer class="text-center">
+    <p><b>Note:-</b> लाल रंग में दर्शित शब्‍दों को प्रतिवेदन से हटावें.</p>
+  </footer>
+</div>
+
+<script>
+function processText() {
+  let content = document.getElementById("content").value;
+  let keywords = document.getElementById("keyword").value.split(",");
+
+  keywords.forEach(word => {
+    let w = word.trim();
+    if (w.length > 0) {
+      let regex = new RegExp("(" + w + ")", "gi"); // capture keyword
+      content = content.replace(regex, "<span class='red'>$1</span>");
+    }
+  });
+
+  document.getElementById("result").innerHTML = content; // keep HTML
+}
+</script>
+</body>
+</html>
